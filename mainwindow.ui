@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>532</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>532</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionInterfaceSelect"/>
+   <addaction name="actionSetFilter"/>
+   <addaction name="actionLogView"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionInterfaceSelect">
+   <property name="icon">
+    <iconset resource="actionIcons.qrc">
+     <normaloff>:/icons/if.png</normaloff>:/icons/if.png</iconset>
+   </property>
+   <property name="text">
+    <string>InterfaceSelect</string>
+   </property>
+   <property name="toolTip">
+    <string>Выбрать интерфейс для захвата данных</string>
+   </property>
+  </action>
+  <action name="actionLogView">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="actionIcons.qrc">
+     <normaloff>:/icons/log.png</normaloff>:/icons/log.png</iconset>
+   </property>
+   <property name="text">
+    <string>LogView</string>
+   </property>
+   <property name="toolTip">
+    <string>Отобразить окно сообщений</string>
+   </property>
+  </action>
+  <action name="actionSetFilter">
+   <property name="icon">
+    <iconset resource="actionIcons.qrc">
+     <normaloff>:/icons/filter.png</normaloff>:/icons/filter.png</iconset>
+   </property>
+   <property name="text">
+    <string>SetFilter</string>
+   </property>
+   <property name="toolTip">
+    <string>Пакетный фильтр</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="actionIcons.qrc"/>
+ </resources>
+ <connections/>
+</ui>

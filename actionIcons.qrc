@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>if.png</file>
+        <file>log.png</file>
+        <file>filter.png</file>
+    </qresource>
+</RCC>

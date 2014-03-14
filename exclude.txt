@@ -1,0 +1,17 @@
+*.jdb
+*.ilk
+*.map
+*.pch
+*.pdb
+*.obj
+*.sbr
+*.ncb
+*.ipch
+*.sdf
+*.log
+*.tlog
+*.lastbuildstate
+exclude.txt
+.svn
+*.exe
+*.dll
