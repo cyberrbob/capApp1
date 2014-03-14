@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Задать фильтр пакетов</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="actionIcons.qrc">
+    <normaloff>:/icons/filter.png</normaloff>:/icons/filter.png</iconset>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -33,7 +37,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="actionIcons.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonBox</sender>

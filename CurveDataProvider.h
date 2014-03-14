@@ -26,6 +26,7 @@ class curveProvider : public QwtSeriesData<QPointF>
         return QPointF( i, dataSamples[i]);
     }
 
+    //dummy func
     virtual QRectF boundingRect() const
     {
         return QRectF();

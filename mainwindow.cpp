@@ -32,15 +32,15 @@ MainWindow::MainWindow(QWidget *parent) :
     qplot = new QwtPlot;
     setCentralWidget(qplot);
 
-    qplot->setTitle("A-Scan demo");
+    //qplot->setTitle("A-Scan demo");
     qplot->setCanvasBackground( Qt::black );
     qplot->setAxisTitle( QwtPlot::yLeft, "Амплитуда,АЦП");
     qplot->setAxisTitle( QwtPlot::xBottom, "Время,мС");
     qplot->setAxisScale( QwtPlot::yLeft, 0, 255);
-    qplot->setAxisScale( QwtPlot::xBottom, 0, 200);
+    //qplot->setAxisScale( QwtPlot::xBottom, 0, 200);
 
-    curve = new QwtPlotCurve("Demo Curve");
-    curve->setPen( Qt::blue, 2 ); // цвет и толщина кривой
+    curve = new QwtPlotCurve;
+    curve->setPen( Qt::blue, 1 ); // цвет и толщина кривой
     curve->setRenderHint( QwtPlotItem::RenderAntialiased, true ); // сглаживание
 
 //    QPolygonF points;
@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
     curve->setSamples(&curve_provider);
     curve->attach(qplot);
 
+    // Хватать пакеты только с нулевым заголовком
     filterString = "ether proto 0x0000";
 
     ui->statusBar->showMessage("Application started", 2000);
@@ -71,6 +72,17 @@ void MainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
     logView.close();
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event);
+
+    if (width() > 100)
+    {
+        qplot->setAxisScale( QwtPlot::xBottom, 0, width() - 100);
+        qplot->replot();
+    }
 }
 
 /* Callback function invoked by libpcap for every incoming packet */
@@ -105,7 +117,7 @@ void packet_handler(u_char *param, const struct pcap_pkthdr *header, const u_cha
     {
         pMainWnd->msgQueueMutex.lock();
         pMainWnd->dataQueue.push(data);
-        pMainWnd->msgQueue.push(str);
+        //pMainWnd->msgQueue.push(str);
         pMainWnd->msgQueueMutex.unlock();
     }
 }
@@ -228,14 +240,15 @@ void MainWindow::checkQueue()
     }
     msgQueueMutex.unlock();
 
+    if (! msg.empty())
+        LogMessage(QString::fromStdString(msg));
+
     if (! data.empty())
     {
         curve_provider.setSamples(data);
-        qplot->replot();
+        //qplot->replot();
+        QMetaObject::invokeMethod( qplot->canvas(), "replot", Qt::QueuedConnection );
     }
-
-    if (! msg.empty())
-        LogMessage(QString::fromStdString(msg));
 }
 
 
