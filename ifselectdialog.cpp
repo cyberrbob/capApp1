@@ -144,7 +144,7 @@ char* IfSelectDialog::iptos(u_long in)
 
     p = (u_char *)&in;
     which = (which + 1 == IPTOSBUFFERS ? 0 : which + 1);
-    _snprintf_s(output[which], sizeof(output[which]), sizeof(output[which]),"%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
+    snprintf(output[which], sizeof(output[which]),"%d.%d.%d.%d", p[0], p[1], p[2], p[3]);
     return output[which];
 }
 

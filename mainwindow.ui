@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>532</width>
+    <width>801</width>
     <height>480</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>532</width>
+     <width>801</width>
      <height>21</height>
     </rect>
    </property>
@@ -33,7 +33,6 @@
    </attribute>
    <addaction name="actionInterfaceSelect"/>
    <addaction name="actionSetFilter"/>
-   <addaction name="actionLogView"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionInterfaceSelect">
@@ -46,24 +45,6 @@
    </property>
    <property name="toolTip">
     <string>Выбрать интерфейс для захвата данных</string>
-   </property>
-  </action>
-  <action name="actionLogView">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="icon">
-    <iconset resource="actionIcons.qrc">
-     <normaloff>:/icons/log.png</normaloff>:/icons/log.png</iconset>
-   </property>
-   <property name="text">
-    <string>LogView</string>
-   </property>
-   <property name="toolTip">
-    <string>Отобразить окно сообщений</string>
    </property>
   </action>
   <action name="actionSetFilter">

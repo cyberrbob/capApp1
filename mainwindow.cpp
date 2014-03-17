@@ -8,6 +8,7 @@
 #include <type_traits>
 #include <thread>
 #include <QVBoxLayout>
+#include <QDockWidget>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,15 +20,14 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(refreshTim, &QTimer::timeout, this, &MainWindow::checkQueue);
     refreshTim->start(10);
 
-    logView.setWindowTitle("Message screen");
-    logView.setReadOnly(true);
-    logView.setWindowFlags(Qt::CustomizeWindowHint | Qt::WindowTitleHint);
-    //logView.move( x() + frameGeometry().width() + 10, y());
-    logView.move(100, 100);
-    logView.resize(400, height());
-    logView.setWindowIcon( ui->actionLogView->icon());
-    logView.setVisible( ui->actionLogView->isChecked());
-    connect(ui->actionLogView, &QAction::toggled, &logView, &QWidget::setVisible);
+    QDockWidget *pDockLogView = new QDockWidget("Экран сообщений", this);
+    pLogView = new QTextEdit(this);
+    pLogView->setReadOnly(true);
+    pDockLogView->setWidget(pLogView);
+    QAction *pToggleLogView = pDockLogView->toggleViewAction();
+    pToggleLogView->setIcon(QIcon(QStringLiteral(":/icons/log.png")));
+    ui->mainToolBar->addAction(pToggleLogView);
+    addDockWidget(Qt::RightDockWidgetArea, pDockLogView);
 
     qplot = new QwtPlot;
     setCentralWidget(qplot);
@@ -64,14 +64,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::LogMessage(QString msg)
 {
-    logView.append(msg);
+    pLogView->append(msg);
     //ui->logView->verticalScrollBar()->setValue(this->verticalScrollBar()->maximum());
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
-    logView.close();
 }
 
 void MainWindow::resizeEvent(QResizeEvent *event)

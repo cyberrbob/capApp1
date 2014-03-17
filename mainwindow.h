@@ -52,7 +52,7 @@ private:
 
 private:
     Ui::MainWindow *ui;
-    QTextEdit logView;
+    QTextEdit *pLogView;
     QLineEdit filterView;
     std::thread capThread;
     QwtPlot *qplot;
